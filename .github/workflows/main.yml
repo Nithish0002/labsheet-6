@@ -1,0 +1,25 @@
+name: Simple Java Add
+
+on:
+  push:
+    branches: [ "main" ]
+
+jobs:
+  build-and-run:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Install Java
+      uses: actions/setup-java@v4
+      with:
+        distribution: 'temurin'
+        java-version: '17'
+
+    - name: Compile Java File
+      run: javac src/AddNumbers.java
+
+    - name: Run Java Program
+      run: java -cp src AddNumbers
